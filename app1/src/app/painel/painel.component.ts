@@ -19,6 +19,8 @@ export class PainelComponent implements OnInit {
 
   public progresso: number = 0
 
+  public tentativas: number = 3
+
   constructor() {
     this.atualizaRodada()
   }
@@ -32,6 +34,7 @@ export class PainelComponent implements OnInit {
   }
 
   public verificarRespsota(): void {
+    console.log(this.tentativas)
 
     if (this.rodadaFrase.frasePtBr === this.resposta) {
       alert('Atradução está correta')
@@ -48,8 +51,15 @@ export class PainelComponent implements OnInit {
       this.atualizaRodada()
 
     } else {
-      alert('Atradução está errada')
+      // diminuir o numero de tentativas
+      this.tentativas--
+
+      if (this.tentativas === -1) {
+        alert('Voce perdeu todas as tentativas')
+      }
     }
+    console.log(this.tentativas)
+
 
   }
 

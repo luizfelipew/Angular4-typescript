@@ -40,6 +40,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+bazel-*
+e2e_test.*
+node_modules
+bower_components
+
 
 # images
 .jpg

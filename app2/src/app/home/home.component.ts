@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
+import { Oferta } from '../shared/oferta.model'
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,20 @@ import { OfertasService } from '../ofertas.service';
   // injeção de serviço
   providers: [ OfertasService ]
 })
-export class HomeComponent implements OnInit {
 
-  constructor(private ofertasService: OfertasService) { }
+export class HomeComponent implements OnInit {  
+
+  public ofertas: Oferta[]
+ 
+  constructor(public ofertasService: OfertasService) {  }
 
   ngOnInit() {
    // forma feita chumbada sem injeção do serviço
    // let ofertas: OfertasService = new OfertasService()
    // console.log(ofertas.getOfertas())
-   console.log(this.ofertasService.getOfertas)
+   this.ofertas = this.ofertasService.getOfertas()
+   console.log(this.ofertas);
+   
   }
 
 }

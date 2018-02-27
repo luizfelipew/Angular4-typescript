@@ -20,8 +20,14 @@ export class HomeComponent implements OnInit {
    // forma feita chumbada sem injeção do serviço
    // let ofertas: OfertasService = new OfertasService()
    // console.log(ofertas.getOfertas())
-   this.ofertas = this.ofertasService.getOfertas()
-   console.log(this.ofertas);
+   //this.ofertas = this.ofertasService.getOfertas()
+
+   this.ofertasService.getOfertas2()
+      .then(
+        ( ofertas: Oferta[]) => { this.ofertas = ofertas },
+        ( param: any ) => { console.log(param) }
+        
+    )
    
   }
 

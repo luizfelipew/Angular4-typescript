@@ -1,4 +1,5 @@
 import { Oferta } from './shared/oferta.model'
+import { setTimeout } from 'timers';
 
 export class OfertasService {
 
@@ -61,13 +62,25 @@ export class OfertasService {
 
     public getOfertas2(): Promise<Oferta[]> {
         return new Promise((resolve, reject) => {
-            console.log('sera que passou por aqui');
-            let deu_certo = false
+            //console.log('sera que passou por aqui');
+            let deu_certo = true
             if(deu_certo){
-                resolve(this.ofertas)
+                setTimeout( () => resolve(this.ofertas) , 3000)
+                //resolve(this.ofertas)
             } else {
                 reject({ codigo_erro: 404, mensagem_erro: 'Servidor nao encontrado xyz' })
             }
+        })
+        .then(( ofertas: Oferta[] ) => {
+            // fazer alguma coisa
+            console.log('Primeiro then')
+            return ofertas
+        })
+        .then(( ofertas: Oferta[] ) => {
+            // falzer outra coisa
+            console.log('Segundo then')
+            return ofertas
+            
         })
     } 
 }

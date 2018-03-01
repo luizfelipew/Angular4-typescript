@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model'
+import { logWarnings } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +26,13 @@ export class HomeComponent implements OnInit {
    this.ofertasService.getOfertas2()
       .then(
         ( ofertas: Oferta[]) => { 
+          console.log('A funcao resolve() foi resolvida depois de 3 segundos')
           this.ofertas = ofertas 
         })
       .catch(( param: any ) => { 
         console.log(param) 
       })
    
-  }
+  } 
 
 }

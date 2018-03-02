@@ -1,5 +1,6 @@
 import { Oferta } from './shared/oferta.model'
 import { setTimeout } from 'timers';
+import { Promise } from 'q';
 
 export class OfertasService {
 
@@ -77,10 +78,17 @@ export class OfertasService {
             return ofertas
         })
         .then(( ofertas: Oferta[] ) => {
-            // falzer outra coisa
+            // fazer outra coisa
             console.log('Segundo then')
-            return ofertas
+            return new Promise((resolve2, reject2) => {
+                setTimeout(() => { resolve2( ofertas ) } ,3000)
+            })
             
+        })
+        .then((Ofertas: Oferta[]) => {
+            console.log('Terceiro then executado apos 3 segundos pq estava aguardando uma promise ser resolvida');
+            
+            return Ofertas
         })
     } 
 }
